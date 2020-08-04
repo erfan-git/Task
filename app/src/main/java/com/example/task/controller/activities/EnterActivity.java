@@ -1,10 +1,14 @@
-package com.example.task;
+package com.example.task.controller.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+
+import com.example.task.R;
+import com.example.task.controller.fragments.EnterFragment;
+
 
 public class EnterActivity extends AppCompatActivity {
 

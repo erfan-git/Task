@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="#9F41E3CF"
     android:foregroundGravity="center"
-    tools:context=".EnterFragment">
+    tools:context=".controller.EnterFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
