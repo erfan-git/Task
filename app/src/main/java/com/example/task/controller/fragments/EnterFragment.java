@@ -1,5 +1,6 @@
 package com.example.task.controller.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.task.R;
@@ -18,6 +20,9 @@ public class EnterFragment extends Fragment {
 
     private EditText mEditTextName;
     private EditText mEditTextNumber;
+    private Button mButtonSave;
+    public static int mNumberOfTasks;
+    public static String mNameOfTasks;
 
     public EnterFragment() {
         // Required empty public constructor
@@ -57,7 +62,7 @@ public class EnterFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                mNameOfTasks = mEditTextName.getText().toString();
             }
         });
 
@@ -74,7 +79,16 @@ public class EnterFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
+//mNumberOfTasks = Integer.mEditTextNumber.getText()
 
+            }
+        });
+
+        mButtonSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mNameOfTasks = mEditTextName.getText().toString();
+//                mNameOfTasks = Integer.parseInt (mEditTextNumber.getText().toString());
             }
         });
 
@@ -83,6 +97,7 @@ public class EnterFragment extends Fragment {
     private void findAllViews(View view) {
         mEditTextName = view.findViewById(R.id.editText_question_name);
         mEditTextNumber = view.findViewById(R.id.editText_question_number);
+        mButtonSave = view.findViewById(R.id.button_create_task);
     }
 
     @Override

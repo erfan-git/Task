@@ -24,6 +24,5 @@ public class EnterActivity extends AppCompatActivity {
                     .add(R.id.frameLayout_container, new EnterFragment())
                     .commit();
         }
-
     }
 }

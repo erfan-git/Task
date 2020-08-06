@@ -32,4 +32,8 @@ public class Task {
         mId = UUID.randomUUID();
 //        mState = new Random(State.)
     }
+
+    public Task() {
+        mId = UUID.randomUUID();
+    }
 }

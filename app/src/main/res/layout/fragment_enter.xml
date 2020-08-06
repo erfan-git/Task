@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#9F41E3CF"
-    android:foregroundGravity="center"
-    tools:context=".controller.EnterFragment">
+    android:foregroundGravity="center">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -28,7 +27,6 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_question_name"
             android:layout_width="348dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:drawableRight="@color/colorAccent"
@@ -38,13 +36,22 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText_question_number"
             android:layout_width="348dp"
-
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:hint="@string/number"
             android:inputType="number"
             android:textColor="#100909" />
+
+        <Button
+            android:id="@+id/button_create_task"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:background="#6BB9E8"
+            android:text="@string/create_task"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
