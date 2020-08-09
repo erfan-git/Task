@@ -10,4 +10,5 @@ public interface Repository {
     Task getTask(UUID uuid);
     void updateTask(Task task);
     void deleteTask(Task task);
+    void addTask(Task task);
 }

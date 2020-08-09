@@ -16,15 +16,19 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.task.R;
+import com.example.task.Repository.TaskRepository;
+import com.example.task.controller.activities.EnterActivity;
 import com.example.task.controller.activities.TaskListActivity;
+import com.example.task.model.Task;
 
 public class EnterFragment extends Fragment {
 
     private EditText mEditTextName;
     private EditText mEditTextNumber;
     private Button mButtonSave;
-    public static int mNumberOfTasks;
-    public static String mNameOfTasks;
+    private int mNumberOfTasks;
+    private String mNameOfTasks;
+    private TaskRepository mTaskRepository;
 
     public EnterFragment() {
         // Required empty public constructor
@@ -33,6 +37,7 @@ public class EnterFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mTaskRepository = TaskRepository.getInstance();
 //        if (savedInstanceState != null) {
 //            mTicTocToeX = (TicTocToe) savedInstanceState.getSerializable(KAY_BUNDLE_TIC_TAC_TOE);
 //            update();
@@ -51,43 +56,46 @@ public class EnterFragment extends Fragment {
     }
 
     private void setClickListeners(View view) {
-        mEditTextName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-//                mNameOfTasks = mEditTextName.getText().toString();
-            }
-        });
-
-        mEditTextNumber.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-            }
-        });
+//        mEditTextName.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+////                mNameOfTasks = mEditTextName.getText().toString();
+//            }
+//        });
+//
+//        mEditTextNumber.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable editable) {
+//            }
+//        });
 
         mButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mNameOfTasks = mEditTextName.getText().toString();
-                mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
-                Intent intent = new Intent(getActivity(), TaskListActivity.class);
-                if (mNameOfTasks != null && mEditTextNumber != null) {
-
+                if (mEditTextName != null && mEditTextNumber != null) {
+                    mNameOfTasks = mEditTextName.getText().toString();
+                    mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
+                    for (int i = 0; i < mNumberOfTasks; i++) {
+                        Task task = new Task(mNameOfTasks);
+                        mTaskRepository.addTask(task);
+                    }
+                    startActivity(TaskListActivity.newIntent(getActivity()));
                 } else {
                     Toast.makeText(getActivity(), "please fill the blanks", Toast.LENGTH_LONG).show();
                 }

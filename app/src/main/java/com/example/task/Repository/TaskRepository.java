@@ -1,17 +1,12 @@
 package com.example.task.Repository;
 
-import com.example.task.Repository.Repository;
 import com.example.task.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static com.example.task.controller.fragments.EnterFragment.mNameOfTasks;
-import static com.example.task.controller.fragments.EnterFragment.mNumberOfTasks;
-
 public class TaskRepository implements Repository {
-    public static final int NUMBER_OF_TASKS = mNumberOfTasks;
     private static TaskRepository sTaskRepository;
 
     public static TaskRepository getInstance() {
@@ -25,12 +20,6 @@ public class TaskRepository implements Repository {
 
     private TaskRepository(){
         mTasks = new ArrayList<>();
-        for (int i = 0; i < NUMBER_OF_TASKS; i++) {
-            Task task = new Task();
-            task.setName(mNameOfTasks);
-
-            mTasks.add(task);
-        }
     }
 
     public List<Task> getTasks() {
@@ -41,6 +30,10 @@ public class TaskRepository implements Repository {
         mTasks = tasks;
     }
 
+    @Override
+    public void addTask(Task task) {
+        mTasks.add(task);
+    }
 
     @Override
     public List<Task> getTask() {

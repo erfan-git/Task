@@ -68,7 +68,7 @@ public class TaskListFragment extends Fragment {
 
         public void bindTask(Task task) {
             mTextViewTitle.setText(task.getName());
-            mTextViewTitle.setText(task.getState().toString());
+            mTextViewState.setText(task.getState().toString());
         }
     }
 
@@ -90,8 +90,10 @@ public class TaskListFragment extends Fragment {
         @NonNull
         @Override
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
             LayoutInflater inflater = LayoutInflater.from(getActivity());
             View view = inflater.inflate(R.layout.list_row_task, parent, false);
+
             TaskHolder taskHolder = new TaskHolder(view);
             return taskHolder;
         }

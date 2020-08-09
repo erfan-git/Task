@@ -1,5 +1,9 @@
 package com.example.task.model;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class Task {
@@ -30,10 +34,15 @@ public class Task {
     public Task(String name) {
         mName = name;
         mId = UUID.randomUUID();
-//        mState = new Random(State.)
+        mState = randomLetter();
     }
 
     public Task() {
         mId = UUID.randomUUID();
+    }
+
+    private State randomLetter() {
+        int pick = new Random().nextInt(State.values().length);
+        return State.values()[pick];
     }
 }
