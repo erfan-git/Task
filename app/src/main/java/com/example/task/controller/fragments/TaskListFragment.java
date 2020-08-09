@@ -1,9 +1,11 @@
 package com.example.task.controller.fragments;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,13 +49,18 @@ public class TaskListFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
         findViews(view);
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         initUI();
 
         return view;
     }
 
     private void initUI() {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        }else{
+            mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        }
         TaskRepository repository = TaskRepository.getInstance();
         List<Task> tasks = repository.getTasks();
         TaskAdapter adapter = new TaskAdapter(tasks);

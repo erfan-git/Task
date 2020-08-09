@@ -5,4 +5,7 @@
     <string name="name">Name</string>
     <string name="number">Number</string>
     <string name="create_task">Create Task</string>
+    <string name="error_empty_number">Number of task is empty</string>
+    <string name="error_empty_name">Name of task is empty</string>
+
 </resources>

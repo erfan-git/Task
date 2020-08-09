@@ -27,7 +27,7 @@ public class EnterFragment extends Fragment {
     private EditText mEditTextNumber;
     private Button mButtonSave;
     private int mNumberOfTasks;
-    private String mNameOfTasks;
+    private String mNameOfTasks = "";
     private TaskRepository mTaskRepository;
 
     public EnterFragment() {
@@ -35,9 +35,9 @@ public class EnterFragment extends Fragment {
     }
 
     public static EnterFragment newInstance() {
-        
+
         Bundle args = new Bundle();
-        
+
         EnterFragment fragment = new EnterFragment();
         fragment.setArguments(args);
         return fragment;
@@ -47,12 +47,6 @@ public class EnterFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mTaskRepository = TaskRepository.getInstance();
-//        if (savedInstanceState != null) {
-//            mTicTocToeX = (TicTocToe) savedInstanceState.getSerializable(KAY_BUNDLE_TIC_TAC_TOE);
-//            update();
-//        } else {
-//            mTicTocToeX = new TicTocToe(NameOfTicTocToe.X);
-//        }
     }
 
     @Override
@@ -65,39 +59,57 @@ public class EnterFragment extends Fragment {
     }
 
     private void setClickListeners(View view) {
-//        mEditTextName.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
+        mEditTextName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().length() != 0) {
+                    mNameOfTasks = charSequence.toString();
+                } else {
+                    mNameOfTasks = "";
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
 //
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-////                mNameOfTasks = mEditTextName.getText().toString();
-//            }
-//        });
-//
-//        mEditTextNumber.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//            }
-//        });
+            }
+        });
+
+        mEditTextNumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.toString().length() != 0) {
+                    mNumberOfTasks = Integer.parseInt(charSequence.toString());
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
 
         mButtonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (mEditTextName != null && mEditTextNumber != null) {
+                if (mNameOfTasks.length() == 0 && mNumberOfTasks == 0) {
+                    mEditTextName.setError(getString(R.string.error_empty_name));
+                    mEditTextNumber.setError(getString(R.string.error_empty_number));
+                } else if (mNameOfTasks.length() == 0) {
+                    mEditTextName.setError(getString(R.string.error_empty_name));
+                } else if (mEditTextNumber.getText().toString().length() == 0) {
+                    mEditTextNumber.setError(getString(R.string.error_empty_number));
+                } else if (mNumberOfTasks == 0) {
+                    mEditTextNumber.setError("Number of task cant be zero !!");
+                } else {
                     mNameOfTasks = mEditTextName.getText().toString();
                     mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
                     for (int i = 0; i < mNumberOfTasks; i++) {
@@ -105,8 +117,6 @@ public class EnterFragment extends Fragment {
                         mTaskRepository.addTask(task);
                     }
                     startActivity(TaskListActivity.newIntent(getActivity()));
-                } else {
-                    Toast.makeText(getActivity(), "please fill the blanks", Toast.LENGTH_LONG).show();
                 }
             }
         });
