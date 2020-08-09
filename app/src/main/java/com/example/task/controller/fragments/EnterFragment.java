@@ -13,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.task.R;
+import com.example.task.controller.activities.TaskListActivity;
 
 public class EnterFragment extends Fragment {
 
@@ -52,35 +54,29 @@ public class EnterFragment extends Fragment {
         mEditTextName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-                mNameOfTasks = mEditTextName.getText().toString();
+//                mNameOfTasks = mEditTextName.getText().toString();
             }
         });
 
         mEditTextNumber.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
-//mNumberOfTasks = Integer.mEditTextNumber.getText()
-
             }
         });
 
@@ -88,7 +84,13 @@ public class EnterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 mNameOfTasks = mEditTextName.getText().toString();
-//                mNameOfTasks = Integer.parseInt (mEditTextNumber.getText().toString());
+                mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
+                Intent intent = new Intent(getActivity(), TaskListActivity.class);
+                if (mNameOfTasks != null && mEditTextNumber != null) {
+
+                } else {
+                    Toast.makeText(getActivity(), "please fill the blanks", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
