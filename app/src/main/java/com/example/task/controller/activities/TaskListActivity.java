@@ -12,22 +12,14 @@ import com.example.task.R;
 import com.example.task.controller.fragments.EnterFragment;
 import com.example.task.controller.fragments.TaskListFragment;
 
-public class TaskListActivity extends AppCompatActivity {
+public class TaskListActivity extends SingleFragmentActivity {
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context,TaskListActivity.class);
         return intent;
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter);
-        FragmentManager mFragmentManager = getSupportFragmentManager();
-        Fragment mFragment = mFragmentManager.findFragmentById(R.id.frameLayout_container);
-        if (mFragment == null){
-            mFragmentManager
-                    .beginTransaction()
-                    .add(R.id.frameLayout_container, new TaskListFragment())
-                    .commit();
-        }
+    public Fragment createFragment() {
+        return TaskListFragment.newInstance();
     }
 }

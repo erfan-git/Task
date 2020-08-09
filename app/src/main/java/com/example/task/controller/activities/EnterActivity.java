@@ -13,23 +13,14 @@ import com.example.task.controller.fragments.EnterFragment;
 
 import java.util.UUID;
 
-public class EnterActivity extends AppCompatActivity {
+public class EnterActivity extends SingleFragmentActivity {
     public static Intent newIntent(Context context) {
         Intent intent = new Intent(context,EnterActivity.class);
         return intent;
     }
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_enter);
-        FragmentManager mFragmentManager = getSupportFragmentManager();
-        Fragment mFragment = mFragmentManager.findFragmentById(R.id.frameLayout_container);
-        if (mFragment == null){
-            mFragmentManager
-                    .beginTransaction()
-                    .add(R.id.frameLayout_container, new EnterFragment())
-                    .commit();
-        }
+    public Fragment createFragment() {
+        return EnterFragment.newInstance();
     }
+
 }

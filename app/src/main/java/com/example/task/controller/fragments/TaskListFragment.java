@@ -26,6 +26,15 @@ public class TaskListFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static TaskListFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TaskListFragment fragment = new TaskListFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

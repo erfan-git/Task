@@ -34,6 +34,15 @@ public class EnterFragment extends Fragment {
         // Required empty public constructor
     }
 
+    public static EnterFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        EnterFragment fragment = new EnterFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
