@@ -129,8 +129,4 @@ public class EnterFragment extends Fragment {
         mButtonSave = view.findViewById(R.id.button_create_task);
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-    }
 }

@@ -1,6 +1,7 @@
 package com.example.task.controller.fragments;
 
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,9 +10,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.task.R;
@@ -48,10 +51,7 @@ public class TaskListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_task_list, container, false);
         findViews(view);
-
-//        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         initUI();
-
         return view;
     }
 
@@ -74,17 +74,24 @@ public class TaskListFragment extends Fragment {
     private class TaskHolder extends RecyclerView.ViewHolder {
         private TextView mTextViewTitle;
         private TextView mTextViewState;
-
+private LinearLayout mLayout ;
         public TaskHolder(@NonNull View itemView) {
             super(itemView);
 
             mTextViewTitle = itemView.findViewById(R.id.list_row_task_title);
             mTextViewState = itemView.findViewById(R.id.list_row_task_state);
+            mLayout = itemView.findViewById(R.id.list_row_task);
         }
 
         public void bindTask(Task task) {
             mTextViewTitle.setText(task.getName());
             mTextViewState.setText(task.getState().toString());
+
+            if (getAdapterPosition() %2 != 0){
+                mLayout.setBackgroundColor(getResources().getColor(R.color.color_row_green));
+            }else {
+                mLayout.setBackgroundColor(Color.WHITE);
+            }
         }
     }
 
@@ -103,6 +110,11 @@ public class TaskListFragment extends Fragment {
             mTasks = tasks;
         }
 
+        @Override
+        public int getItemCount() {
+            return mTasks.size();
+        }
+
         @NonNull
         @Override
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -118,11 +130,7 @@ public class TaskListFragment extends Fragment {
         public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
             Task task = mTasks.get(position);
             holder.bindTask(task);
-        }
 
-        @Override
-        public int getItemCount() {
-            return mTasks.size();
         }
     }
 }
