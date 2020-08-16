@@ -18,6 +18,7 @@ public class EnterActivity extends SingleFragmentActivity {
         Intent intent = new Intent(context,EnterActivity.class);
         return intent;
     }
+
     @Override
     public Fragment createFragment() {
         return EnterFragment.newInstance();

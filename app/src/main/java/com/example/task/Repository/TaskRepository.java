@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class TaskRepository implements Repository {
+public class TaskRepository implements IRepository<Task> {
     private static TaskRepository sTaskRepository;
 
     public static TaskRepository getInstance() {
@@ -31,8 +31,23 @@ public class TaskRepository implements Repository {
     }
 
     @Override
-    public void addTask(Task task) {
+    public void add(Task task) {
         mTasks.add(task);
+    }
+
+    @Override
+    public void insert(Task task) {
+
+    }
+
+    @Override
+    public void insertList(List<Task> list) {
+
+    }
+
+    @Override
+    public int getPosition(UUID uuid) {
+        return 0;
     }
 
     @Override
@@ -51,14 +66,14 @@ public class TaskRepository implements Repository {
     }
 
     @Override
-    public void updateTask(Task task) {
+    public void update(Task task) {
         Task updateTask = getTask(task.getId());
         updateTask.setName(task.getName());
         updateTask.setState(task.getState());
     }
 
     @Override
-    public void deleteTask(Task task) {
+    public void delete(Task task) {
         for (int i = 0; i < mTasks.size(); i++) {
             if (mTasks.get(i).getId().equals(task.getId())) {
                 mTasks.remove(i);

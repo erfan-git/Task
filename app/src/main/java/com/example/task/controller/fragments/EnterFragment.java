@@ -1,9 +1,7 @@
 package com.example.task.controller.fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
@@ -13,11 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.task.R;
 import com.example.task.Repository.TaskRepository;
-import com.example.task.controller.activities.EnterActivity;
 import com.example.task.controller.activities.TaskListActivity;
 import com.example.task.model.Task;
 
@@ -114,7 +110,7 @@ public class EnterFragment extends Fragment {
                     mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
                     for (int i = 0; i < mNumberOfTasks; i++) {
                         Task task = new Task(mNameOfTasks);
-                        mTaskRepository.addTask(task);
+                        mTaskRepository.add(task);
                     }
                     startActivity(TaskListActivity.newIntent(getActivity()));
                 }
