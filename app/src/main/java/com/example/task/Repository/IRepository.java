@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 public interface IRepository<E> {
-    List<E> getTask();
-    E getTask(UUID uuid);
+    List<E> getList();
+    E get(UUID uuid);
     void update(E e);
     void delete(E e);
     void add(E e);

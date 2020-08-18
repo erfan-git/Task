@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class EnterActivity extends SingleFragmentActivity {
     public static Intent newIntent(Context context) {
-        Intent intent = new Intent(context,EnterActivity.class);
+        Intent intent = new Intent(context, EnterActivity.class);
         return intent;
     }
 

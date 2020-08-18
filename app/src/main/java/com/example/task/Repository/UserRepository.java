@@ -10,12 +10,12 @@ public class UserRepository implements IRepository<User> {
 
 
     @Override
-    public List<User> getTask() {
+    public List<User> get() {
         return null;
     }
 
     @Override
-    public User getTask(UUID uuid) {
+    public User get(UUID uuid) {
         return null;
     }
 

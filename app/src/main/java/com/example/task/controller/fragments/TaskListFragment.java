@@ -60,8 +60,8 @@ public class TaskListFragment extends Fragment {
         }else{
             mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         }
-        TaskRepository repository = TaskRepository.getInstance();
-        List<Task> tasks = repository.getTasks();
+        TaskRepository repository = TaskRepository.getInstance(getActivity());
+        List<Task> tasks = repository.getList();
         TaskAdapter adapter = new TaskAdapter(tasks);
         mRecyclerView.setAdapter(adapter);
     }

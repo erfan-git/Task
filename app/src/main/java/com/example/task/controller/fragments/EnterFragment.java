@@ -42,7 +42,7 @@ public class EnterFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTaskRepository = TaskRepository.getInstance();
+//        mTaskRepository = TaskRepository.getInstance();
     }
 
     @Override
@@ -67,7 +67,6 @@ public class EnterFragment extends Fragment {
                 } else {
                     mNameOfTasks = "";
                 }
-
             }
 
             @Override
