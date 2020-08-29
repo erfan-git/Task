@@ -3,7 +3,8 @@ package com.example.task.database.cursorWrapper;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.task.database.TaskDBSchema;
+
+import com.example.task.database.TaskDBSchema.TaskTable.COLS;
 import com.example.task.model.State;
 import com.example.task.model.Task;
 
@@ -17,12 +18,12 @@ public class TaskCursorWrapper extends CursorWrapper {
     }
 
     public Task getTask() {
-        Task task = new Task(UUID.fromString(getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.UUID))),
-                getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.NAME)),
-                State.valueOf(getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.STATE))),
-                new Date(getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.DATE))),
-                getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.DESCRIPTION)),
-                new Timer(getString(getColumnIndex(TaskDBSchema.TaskTable.COLS.TIME))));
+        Task task = new Task(UUID.fromString(getString(getColumnIndex(COLS.UUID))),
+                getString(getColumnIndex(COLS.NAME)),
+                State.valueOf(getString(getColumnIndex(COLS.STATE))),
+                new Date(getString(getColumnIndex(COLS.DATE))),
+                getString(getColumnIndex(COLS.DESCRIPTION)),
+                UUID.fromString(getString(getColumnIndex(COLS.USER_UUID))));
         return task;
     }
 }

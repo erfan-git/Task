@@ -83,7 +83,7 @@ private LinearLayout mLayout ;
         }
 
         public void bindTask(Task task) {
-            mTextViewTitle.setText(task.getName());
+            mTextViewTitle.setText(task.getTitle());
             mTextViewState.setText(task.getState().toString());
 
             if (getAdapterPosition() %2 != 0){

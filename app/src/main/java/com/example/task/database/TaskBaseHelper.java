@@ -11,8 +11,8 @@ import static com.example.task.database.TaskDBSchema.TaskTable.COLS;
 
 public class TaskBaseHelper extends SQLiteOpenHelper {
 
-    public TaskBaseHelper(@Nullable Context context) {
-        super(context, NAME, null, TaskDBSchema.VERSION);
+    public TaskBaseHelper(@Nullable Context context,String name,int version) {
+        super(context, name, null,version);
     }
 
     /**
@@ -26,10 +26,16 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + TaskDBSchema.TaskTable.NAME + "(" +
                 COLS.ID + " integer primary key autoincrement," +
                 COLS.UUID + " text," +
-                COLS.TIME + " text," +
                 COLS.NAME + " text," +
                 COLS.DATE + " long," +
                 COLS.STATE + " text" +
+                ");");
+
+        db.execSQL("CREATE TABLE " + UserDBSchema.UserTable.NAME + "(" +
+                UserDBSchema.UserTable.COLS.ID + " integer primary key autoincrement," +
+                UserDBSchema.UserTable.COLS.UUID + " text," +
+                UserDBSchema.UserTable.COLS.USERNAME + " text," +
+                UserDBSchema.UserTable.COLS.PASSWORD + " long" +
                 ");");
     }
 

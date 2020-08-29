@@ -1,23 +1,19 @@
 package com.example.task.model;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Random;
-import java.util.Timer;
 import java.util.UUID;
 
 public class Task {
     private UUID mId;
-    private String mName;
+    private UUID mUserId;
+    private String mTitle,mDescription;
     private State mState;
     private Date mDate;
-    private Timer mTime;
-    private String mDescription = "";
 
-    public Task(String name) {
-        mName = name;
+    public Task(String title,UUID uuid) {
+        mTitle = title;
+        mUserId = uuid;
         mId = UUID.randomUUID();
         mState = randomLetter();
 //        this(UUID.randomUUID(),randomLetter());
@@ -27,15 +23,22 @@ public class Task {
         mId = uuid;
         mState = state;
         mDate = new Date();
-        mTime = new Timer();
     }
 
-    public Task(UUID id, String name, State state, Date date, String description, Timer time) {
+    public Task(UUID id, String name, State state, Date date, String description) {
         mId = id;
-        mName = name;
+        mTitle = name;
         mState = state;
         mDate = date;
-        mTime = time;
+        mDescription = description;
+    }
+
+    public Task(UUID id,String name, State state, Date date, String description,UUID userId) {
+        mId = id;
+        mUserId = userId;
+        mTitle = name;
+        mState = state;
+        mDate = date;
         mDescription = description;
     }
 
@@ -47,14 +50,6 @@ public class Task {
         mDate = date;
     }
 
-    public Timer getTime() {
-        return mTime;
-    }
-
-    public void setTime(Timer time) {
-        mTime = time;
-    }
-
     public String getDescription() {
         return mDescription;
     }
@@ -63,8 +58,8 @@ public class Task {
         mDescription = description;
     }
 
-    public void setName(String name) {
-        mName = name;
+    public void setTitle(String title) {
+        mTitle = title;
     }
 
     public void setState(State state) {
@@ -75,8 +70,8 @@ public class Task {
         return mId;
     }
 
-    public String getName() {
-        return mName;
+    public String getTitle() {
+        return mTitle;
     }
 
     public State getState() {

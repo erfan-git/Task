@@ -10,10 +10,10 @@ public class TaskDBSchema {
         public static final class COLS {
             public static final String ID = "id";
             public static final String UUID = "uuid";
+            public static final String USER_UUID = "userUuid";
             public static final String NAME = "name";
             public static final String DESCRIPTION = "description";
             public static final String DATE = "date";
-            public static final String TIME = "time";
             public static final String STATE = "state";
         }
     }

@@ -10,7 +10,6 @@ public interface IRepository<E> {
     E get(UUID uuid);
     void update(E e);
     void delete(E e);
-    void add(E e);
     void insert(E e);
     void insertList(List<E> list);
     int getPosition(UUID uuid);

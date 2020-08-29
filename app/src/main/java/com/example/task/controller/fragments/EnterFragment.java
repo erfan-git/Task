@@ -92,29 +92,29 @@ public class EnterFragment extends Fragment {
             }
         });
 
-        mButtonSave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mNameOfTasks.length() == 0 && mNumberOfTasks == 0) {
-                    mEditTextName.setError(getString(R.string.error_empty_name));
-                    mEditTextNumber.setError(getString(R.string.error_empty_number));
-                } else if (mNameOfTasks.length() == 0) {
-                    mEditTextName.setError(getString(R.string.error_empty_name));
-                } else if (mEditTextNumber.getText().toString().length() == 0) {
-                    mEditTextNumber.setError(getString(R.string.error_empty_number));
-                } else if (mNumberOfTasks == 0) {
-                    mEditTextNumber.setError("Number of task cant be zero !!");
-                } else {
-                    mNameOfTasks = mEditTextName.getText().toString();
-                    mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
-                    for (int i = 0; i < mNumberOfTasks; i++) {
-                        Task task = new Task(mNameOfTasks);
-                        mTaskRepository.add(task);
-                    }
-                    startActivity(TaskListActivity.newIntent(getActivity()));
-                }
-            }
-        });
+//        mButtonSave.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if (mNameOfTasks.length() == 0 && mNumberOfTasks == 0) {
+//                    mEditTextName.setError(getString(R.string.error_empty_name));
+//                    mEditTextNumber.setError(getString(R.string.error_empty_number));
+//                } else if (mNameOfTasks.length() == 0) {
+//                    mEditTextName.setError(getString(R.string.error_empty_name));
+//                } else if (mEditTextNumber.getText().toString().length() == 0) {
+//                    mEditTextNumber.setError(getString(R.string.error_empty_number));
+//                } else if (mNumberOfTasks == 0) {
+//                    mEditTextNumber.setError("Number of task cant be zero !!");
+//                } else {
+//                    mNameOfTasks = mEditTextName.getText().toString();
+//                    mNumberOfTasks = Integer.parseInt(mEditTextNumber.getText().toString());
+//                    for (int i = 0; i < mNumberOfTasks; i++) {
+//                        Task task = new Task(mNameOfTasks);
+//                        mTaskRepository.add(task);
+//                    }
+//                    startActivity(TaskListActivity.newIntent(getActivity()));
+//                }
+//            }
+//        });
 
     }
 

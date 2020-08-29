@@ -19,6 +19,7 @@ public class TaskRepository implements IRepository<Task> {
     private static TaskRepository sTaskRepository;
     private static Context mContext;
     private SQLiteDatabase mDatabase;
+    private UUID mUserId ;
 
     public static TaskRepository getInstance(Context context) {
         mContext = context.getApplicationContext();
@@ -28,24 +29,9 @@ public class TaskRepository implements IRepository<Task> {
         return sTaskRepository;
     }
 
-    private List<Task> mTasks;
-
     private TaskRepository() {
-        TaskBaseHelper crimeBaseHelper = new TaskBaseHelper(mContext);
+        TaskBaseHelper crimeBaseHelper = new TaskBaseHelper(mContext,TaskDBSchema.NAME,TaskDBSchema.VERSION);
         mDatabase = crimeBaseHelper.getWritableDatabase();
-    }
-
-    public List<Task> getTasks() {
-        return mTasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        mTasks = tasks;
-    }
-
-    @Override
-    public void add(Task task) {
-        mTasks.add(task);
     }
 
     @Override
@@ -55,7 +41,6 @@ public class TaskRepository implements IRepository<Task> {
 
     @Override
     public void insertList(List<Task> list) {
-
     }
 
     @Override
@@ -66,7 +51,6 @@ public class TaskRepository implements IRepository<Task> {
                 return i;
             }
         }
-
         return 0;
     }
 
@@ -141,9 +125,8 @@ public class TaskRepository implements IRepository<Task> {
     private ContentValues getTaskContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(COLS.UUID, task.getId().toString());
-        values.put(COLS.NAME, task.getName());
+        values.put(COLS.NAME, task.getTitle());
         values.put(COLS.STATE, task.getState().toString());
-        values.put(COLS.TIME, task.getTime().toString());
         values.put(COLS.DATE, task.getDate().toString());
         values.put(COLS.DESCRIPTION, task.getDescription());
         return values;
